@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BowWow Dog Groomers</string>
+    <string name="app_title">BowWow</string>
+    <string name="description">Input dog weight and select service(s).</string>
+    <string name="button_calculate">Calculate</string>
+    <string name="text_total">Total due: </string>
+    <string name="button_order">Order</string>
+    <string name="button_reset">Reset</string>
+    <string name="option_trim_nails">Trim nails</string>
+    <string name="option_flea_bath">Flea bath</string>
+    <string name="option_massage">Massage</string>
+    <string name="hint_input_weight">Input your dog\'s weight in pounds</string>
+    <string name="input_weight">Dog weight (LBS)</string>
+    <string name="total_due">"Total due: "</string>
+    <string name="please_input_a_weight">"Please input a weight"</string>
+</resources>
