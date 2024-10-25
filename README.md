@@ -1,6 +1,6 @@
-# GroomerApp
+# BowWow Dog Groomers App
 
-GroomerApp is an Android application designed to assist users in calculating and placing orders for pet grooming services. With a user-friendly interface, the app allows users to input their pet's weight, select additional grooming services, and receive a dynamically calculated total price. Key features include input validation, debounced input handling for smooth performance, and visual cues for enhanced usability.
+BowWow Dog Groomers App is an Android application designed to assist users in calculating and placing orders for pet grooming services. With a user-friendly interface, the app allows users to input their pet's weight, select additional grooming services, and receive a dynamically calculated total price. Key features include input validation, debounced input handling for smooth performance, and visual cues for enhanced usability.
 
 
 
