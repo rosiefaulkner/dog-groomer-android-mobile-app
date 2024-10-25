@@ -2,6 +2,12 @@
 
 GroomerApp is an Android application designed to assist users in calculating and placing orders for pet grooming services. With a user-friendly interface, the app allows users to input their pet's weight, select additional grooming services, and receive a dynamically calculated total price. Key features include input validation, debounced input handling for smooth performance, and visual cues for enhanced usability.
 
+
+
+https://github.com/user-attachments/assets/2923b4d3-7d76-4a63-8d16-33fc2b53e24e
+
+
+
 ## Features
 
 - **Weight Input with Validation**: Ensures the user provides a valid weight for accurate price calculations.
