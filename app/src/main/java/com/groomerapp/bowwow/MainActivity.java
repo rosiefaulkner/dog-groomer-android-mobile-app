@@ -20,11 +20,23 @@ import java.text.MessageFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Weight input class property. Used to update total order calculation
+     */
     private EditText weightValInput;
 
+    /**
+     * Handler class property. Used to delay action
+     */
     private Handler handler = new Handler();
+    /**
+     * Debounce class property. Delay in milliseconds before performing action
+     */
     private final long debounceDelay = 500;
 
+    /**
+     * Handler for debounce on weight input change
+     */
     private Runnable workRunnable = new Runnable() {
         @Override
         public void run() {
@@ -61,16 +73,26 @@ public class MainActivity extends AppCompatActivity {
         weightValInput = findViewById(R.id.weight);
 
         weightValInput.addTextChangedListener(new TextWatcher() {
+            /**
+             * Class 'Anonymous class derived from TextWatcher' must implement
+             * abstract method 'beforeTextChanged(CharSequence, int, int, int)' in
+             * 'TextWatcher'. Method is unused.
+             */
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not needed
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+            /**
+             * Class 'Anonymous class derived from TextWatcher' must implement
+             * abstract method 'onTextChanged(CharSequence, int, int, int)' in
+             * 'TextWatcher'. Method is unused.
+             */
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Not needed
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
+            /**
+             * Handler for debounce on weight input change. Wait half a second
+             * after user inputs weight to calculate total order.
+             */
             @Override
             public void afterTextChanged(Editable s) {
                 handler.removeCallbacks(workRunnable);
@@ -79,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handler for calculating total order. Returns toast communicating error
+     * if weight input is invalid. Otherwise returns total order calculation.
+     */
     private Float calculateTotal() {
         if (!this.isWeightValidOnInputChange()) {
             Toast.makeText(this, "Please input a weight", Toast.LENGTH_SHORT).show();
@@ -97,21 +123,33 @@ public class MainActivity extends AppCompatActivity {
         return total;
     }
 
+    /**
+     * Handler for adding cost of nail trim to total order calculation if checked
+     */
     private int getNailTrimCost() {
         CheckBox trimNails = findViewById(R.id.nailTrim);
         return trimNails.isChecked() ? 5 : 0;
     }
 
+    /**
+     * Handler for adding cost of flea bath to total order calculation if checked
+     */
     private int getFleaBathCost() {
         CheckBox fleaBath = findViewById(R.id.fleaBath);
         return fleaBath.isChecked() ? 10 : 0;
     }
 
+    /**
+     * Handler for adding cost of massage to total order calculation if checked
+     */
     private int getMassageCost() {
         CheckBox massage = findViewById(R.id.massage);
         return massage.isChecked() ? 20 : 0;
     }
 
+    /**
+     * Resets checkboxes to unchecked
+     */
     private void resetCheckBoxes() {
         CheckBox trimNails = findViewById(R.id.nailTrim);
         trimNails.setChecked(false);
@@ -121,16 +159,25 @@ public class MainActivity extends AppCompatActivity {
         massage.setChecked(false);
     }
 
+    /**
+     * Resets total order display to empty string
+     */
     private void resetTotal() {
         TextView totalText = findViewById(R.id.total);
         totalText.setText("");
     }
 
+    /**
+     * Resets weight input to empty
+     */
     private void resetWeightInput() {
         EditText inputWeight = findViewById(R.id.weight);
         inputWeight.getText().clear();
     }
 
+    /**
+     * Handler for order total display. Displays total order calculation
+     */
     private void displayTotal() {
         // Display total
         TextView totalText = findViewById(R.id.total);
@@ -139,10 +186,17 @@ public class MainActivity extends AppCompatActivity {
         this.setOrderBtnStateOnInputChange();
     }
 
+    /**
+     * Handler for calculate button click. Displays total order calculation
+     */
     private void onCalculateClick() {
         this.displayTotal();
     }
 
+    /**
+     * Handler for order button click. Displays toast message if order total
+     * is greater than 0. Then resets all values to default
+     */
     private void onOrderClick() {
         if (this.calculateTotalOnInputChange() < 1) {
             return;
@@ -151,6 +205,9 @@ public class MainActivity extends AppCompatActivity {
         this.onResetClick();
     }
 
+    /**
+     * Handler for reset button click. Resets all values to default
+     */
     private void onResetClick() {
         // Reset weight input
         this.resetWeightInput();
@@ -165,10 +222,17 @@ public class MainActivity extends AppCompatActivity {
         this.setOrderBtnStateOnInputChange();
     }
 
+    /**
+     * Updates total order calculation for checked addons (checkboxes)
+     */
     private void onAddOnCheck() {
         this.onCalculateClick();
     }
 
+    /**
+     * Is weight input valid? If weight begins with 0, remove it and
+     * update view for user. Then return boolean for if weight is now valid or not.
+     */
     private boolean isWeightValidOnInputChange() {
         try {
             float inputWeightFloat = Float.parseFloat(weightValInput.getText().toString());
@@ -199,6 +263,10 @@ public class MainActivity extends AppCompatActivity {
         return total;
     }
 
+    /**
+     * Gets total order calculation and
+     * displays the formatted total to the user
+     */
     private void displayTotalOnInputChange() {
         // Display total
         TextView totalText = findViewById(R.id.total);
@@ -206,11 +274,19 @@ public class MainActivity extends AppCompatActivity {
         totalText.setText(MessageFormat.format("{0}${1}.00", getString(R.string.total_due), total));
     }
 
+    /**
+     * Updates order button state. If weight is invalid, the
+     * order button is disabled. Enabled otherwise.
+     */
     private void setOrderBtnStateOnInputChange() {
         // set disabled if weight is invalid
         findViewById(R.id.order).setEnabled(isWeightValidOnInputChange());
     }
 
+    /**
+     * Enables debounce on total order calculation and
+     * updates order button state
+     */
     private void performAction() {
         this.displayTotalOnInputChange();
         this.setOrderBtnStateOnInputChange();
